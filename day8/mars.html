@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    fetch(
+      "https://api.nasa.gov/insight_weather/?api_key=Siu2u4Szz43O6zoWGqhlbRKDV8StNhdc9INshGXK&feedtype=json&ver=1.0"
+    ).then(async (res) => {
+      const json = await res.json();
+      document.body.innerHTML += `
+      <h1>First UTC: ${json[675]["First_UTC"]}</h1>
+      <h1>Last UTC: ${json[675]["Last_UTC"]}</h1>
+      <h1>Season: ${json[675]["Season"]}</h1>
+        `;
+    });
+  </script>
+</html>

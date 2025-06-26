@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    fetch(
+      "https://api.nasa.gov/planetary/apod?api_key=Siu2u4Szz43O6zoWGqhlbRKDV8StNhdc9INshGXK"
+    ).then(async (res) => {
+      const json = await res.json();
+      console.log("JSON: ", json);
+      document.body.innerHTML += `
+        <h1>${json.title}</h1>
+        <img src="${json.url}" height="200" width="200"/>
+        <p>${json.explanation}</p>
+
+        `;
+    });
+  </script>
+</html>

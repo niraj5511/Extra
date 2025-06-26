@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <span>Start</span>
+      <input type="date" name="" id="s_date" />
+      <span>End</span>
+      <input type="date" name="" id="e_date" />
+
+      <input type="button" onclick="fetchData()" value="Fetch" />
+      <div id="container"></div>
+    </form>
+  </body>
+  <script>
+    function fetchData() {
+      let s_date = document.getElementById("s_date").value;
+      let e_date = document.getElementById("e_date").value;
+      const container = document.getElementById("container");
+      fetch(
+        `https://api.nasa.gov/planetary/apod?start_date=${s_date}&end_date=${e_date}&api_key=Siu2u4Szz43O6zoWGqhlbRKDV8StNhdc9INshGXK`
+      ).then(async (res) => {
+        const json = await res.json();
+        console.log("JSON: ", json);
+        for (const obj of json) {
+          container.innerHTML += `
+            <h1>${obj.title}</h1>
+            <img src="${obj.url}" height="200" width="200"/>
+            `;
+        }
+      });
+    }
+  </script>
+</html>
