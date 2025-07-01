@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const users= ["nokia", "nvidia", "username"]
+        // Normal way of filtering 
+
+        // let filteredUsers = []
+        // for(const u of users){
+        //     if(u === "nokia") continue
+        //     else filteredUsers.push(u)
+        // }
+        // console.log("users", users)
+        // console.log("Filtered users", filteredUsers);
+
+        // Using filter for filtering
+        // const filteredUsers = users.filter(function(value,index){
+        //     if(value!="nokia") return false
+        //     else return true
+        // })
+        // console.log("Filtered Users", filteredUsers);
+
+        // Similar
+        // Using filter for filtering
+        const filteredUsers = users.filter((value,index) => value!="nokia")
+        // console.log("Filtered Users", filteredUsers);
+
+        // Example to filter odd and even numbers along with the sum
+        const nums = [2,3,5,7,8]
+        let evenSum = 0, oddSum = 0
+        const even = nums.filter((value,index) => {
+            if  (value % 2 == 0){
+                evenSum += value
+                return true 
+            }
+        })
+        const odd = nums.filter((value,index) => {
+            if  (value % 2 != 0){
+                oddSum += value
+                return true  
+            }
+        })
+        console.log("Even Numbers", even);
+        console.log("Odd Numbers", odd);
+        console.log("Sum of Even Numbers", evenSum);
+        console.log("Sum of Odd Numbers", oddSum);
+        
+        
+    </script>
+</body>
+</html>
