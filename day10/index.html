@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="button"] {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #0056b3;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+
+  <body>
+    <form action="">
+      <label for="">Email</label>
+      <input type="email" name="" id="email" placeholder="Enter your email" />
+      <label for="">Password</label>
+      <input type="password" name="" id="pass" placeholder="Enter password" />
+      <input type="button" value="Login" onclick="loginUser()" />
+    </form>
+    <div id="status"></div>
+  </body>
+  <script>
+    function loginUser() {
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("pass").value;
+
+      if (!email || !pass) {
+        alert("Both email and passwords are required");
+        return;
+      }
+      fetch(`http://localhost:4000/login?email=${email}&password=${pass}`)
+        .then((res) => res.json())
+        .then((json) => {
+          console.log("json", json);
+          document.getElementById("status").innerHTML = json.message;
+        });
+    }
+  </script>
+</html>
