@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" name="" id="name" placeholder="Enter your Name" />
+      <input type="button" value="Submit Name" onclick="handleName()" />
+    </form>
+    <div id="message"></div>
+  </body>
+  <script>
+    function handleName() {
+      const name = document.getElementById("name").value;
+      if (!name) {
+        alert("Name is required");
+      }
+      fetch(`http://localhost:5000/user/greet?name=${name}`)
+        .then((res) => res.json())
+        .then((json) => {
+          document.getElementById("message").innerHTML = json.message;
+        });
+    }
+  </script>
+</html>

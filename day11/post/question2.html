@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    background-color: #f5f5f5;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+
+  input[type="number"] {
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #status {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+  }
+</style>
+
+  <body>
+  
+      <label for="">Number1</label>
+      <input type="number" id="num1" />
+      <label for="">Number2</label>
+      <input type="number" id="num2" />
+      <button onclick="addNumber()">Add</button>
+
+    <div id="status"></div>
+  </body>
+  <script>
+    function addNumber() {
+    
+      const num1 = document.getElementById("num1").value;
+      const num2 = document.getElementById("num2").value;
+      fetch(`http://localhost:5000/calculate`, {
+        method: "POST",
+        body: JSON.stringify({
+          num1: num1,
+          num2: num2,
+        }),
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          document.getElementById("status").innerHTML = json.message;
+        });
+    }
+  </script>
+</html>
